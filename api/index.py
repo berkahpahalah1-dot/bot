@@ -12,7 +12,7 @@ log = logging.getLogger("gmail-checker-business")
 
 app = FastAPI(title="Gmail Checker Business Bot")
 
-TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+TELEGRAM_TOKEN = os.environ["8720270022:AAH3kGgBqCBqvxGn182hZaTW7OccHibEuqM"]
 TELEGRAM_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET", "")
 ADMIN_WEBHOOK_SECRET = os.environ["ADMIN_WEBHOOK_SECRET"]
 SUPABASE_URL = os.environ["SUPABASE_URL"]
