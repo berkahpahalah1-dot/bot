@@ -13,8 +13,8 @@ log = logging.getLogger("gmail-checker-business")
 app = FastAPI(title="Gmail Checker Business Bot")
 
 TELEGRAM_TOKEN = os.environ["8720270022:AAH3kGgBqCBqvxGn182hZaTW7OccHibEuqM"]
-TELEGRAM_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET", "")
-ADMIN_WEBHOOK_SECRET = os.environ["ADMIN_WEBHOOK_SECRET"]
+TELEGRAM_SECRET = os.getenv("https://bothdueued.vercel.app", "")
+ADMIN_WEBHOOK_SECRET = os.environ["https://t.me/kramtzy1"]
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_SERVICE_ROLE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 MIDTRANS_SERVER_KEY = os.environ["MIDTRANS_SERVER_KEY"]
