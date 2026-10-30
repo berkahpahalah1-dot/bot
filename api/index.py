@@ -12,18 +12,30 @@ log = logging.getLogger("gmail-checker-business")
 
 app = FastAPI(title="Gmail Checker Business Bot")
 
+import os
+
 TELEGRAM_TOKEN = os.environ["8720270022:AAH3kGgBqCBqvxGn182hZaTW7OccHibEuqM"]
-TELEGRAM_SECRET = os.getenv("https://bothdueued.vercel.app", "")
+TELEGRAM_SECRET = os.environ["https://botcheker.vercel.app"]
 ADMIN_WEBHOOK_SECRET = os.environ["AdminGmail_A7fK9mQ2xR8vL3pN5wT1zB6cH4jY0sDd"]
+
 SUPABASE_URL = os.environ["https://krodaebnbejaipjynnso.supabase.co"]
 SUPABASE_SERVICE_ROLE_KEY = os.environ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtyb2RhZWJuYmVqYWlwanlubnNvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MzM1MDk1NSwiZXhwIjoyMTA4OTI2OTU1fQ.LyNlfmXLh0pWXrN62ZfbloX8ccekNISzr5RiuGp_q9I"]
+
 MIDTRANS_SERVER_KEY = os.environ["SB-Mid-server-vm5DO9MaEye9C~g_6U~LSioI"]
 MIDTRANS_IS_PRODUCTION = os.getenv("MIDTRANS_IS_PRODUCTION", "false").lower() == "true"
-OWNER_IDS = {x.strip() for x in os.getenv("8942320889", "").split(",") if x.strip()}
+
+OWNER_IDS = {
+    x.strip()
+    for x in os.getenv("8942320889", "").split(",")
+    if x.strip()
+}
+
 SUPPORT_USERNAME = os.getenv("https://t.me/kramtzy1", "").lstrip("@")
+
 PRICE_PER_EMAIL = int(os.getenv("PRICE_PER_EMAIL", "100"))
 VIP_30_PRICE = int(os.getenv("VIP_30_PRICE", "25000"))
 VIP_30_DAILY_LIMIT = int(os.getenv("VIP_30_DAILY_LIMIT", "500"))
+
 MAX_EMAILS = 50
 
 API_KEYS = [os.getenv(f"EV_API_KEY_{i}", "").strip() for i in range(1, 6)]
