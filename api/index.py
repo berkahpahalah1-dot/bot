@@ -14,7 +14,7 @@ app = FastAPI(title="Gmail Checker Business Bot")
 
 import os
 
-TELEGRAM_TOKEN = os.environ["8720270022:AAH3kGgBqCBqvxGn182hZaTW7OccHibEuqM"]
+TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 TELEGRAM_SECRET = os.environ["https://botcheker.vercel.app"]
 ADMIN_WEBHOOK_SECRET = os.environ["AdminGmail_A7fK9mQ2xR8vL3pN5wT1zB6cH4jY0sDd"]
 
