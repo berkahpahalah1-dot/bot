@@ -307,14 +307,44 @@ async def midtrans_webhook(request: Request):
 @app.post("/api/admin/telegram-webhook")
 async def set_telegram_webhook(request: Request):
     supplied = request.headers.get("X-Admin-Secret", "")
-    if not hmac.compare_digest(supplied, ADMIN_WEBHOOK_SECRET):
+
+    if (
+        not ADMIN_WEBHOOK_SECRET
+        or not hmac.compare_digest(supplied, ADMIN_WEBHOOK_SECRET)
+    ):
         raise HTTPException(status_code=403, detail="Forbidden")
-    body = await request.json()
-    url = body.get("url", "").rstrip("/")
+
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Body JSON tidak valid")
+
+    if not isinstance(body, dict):
+        raise HTTPException(status_code=400, detail="Body harus berupa JSON object")
+
+    url = str(body.get("url", "")).strip().rstrip("/")
+
     if not url.startswith("https://"):
         raise HTTPException(status_code=400, detail="HTTPS URL required")
-    payload = {"url": url + "/api/telegram", "allowed_updates": ["message"]}
+
+    if not TELEGRAM_TOKEN:
+        raise HTTPException(
+            status_code=500,
+            detail="TELEGRAM_TOKEN belum diatur"
+        )
+
+    payload = {
+        "url": url + "/api/telegram",
+        "allowed_updates": ["message"]
+    }
+
     if TELEGRAM_SECRET:
         payload["secret_token"] = TELEGRAM_SECRET
+
     result = tg("setWebhook", payload)
-    return {"ok": True, "result": result}
+
+    return {
+        "ok": True,
+        "message": "Telegram webhook berhasil didaftarkan",
+        "result": result
+    }
